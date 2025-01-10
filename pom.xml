@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.beangle</groupId>
   <artifactId>beangle-java</artifactId>
@@ -85,171 +86,6 @@
 
   <build>
     <defaultGoal>clean install</defaultGoal>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${mvn.compiler.version}</version>
-          <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-            <release>${java.version}</release>
-            <encoding>${project.build.sourceEncoding}</encoding>
-          </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>${mvn.deploy.version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>${mvn.clean.version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>${mvn.install.version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${mvn.source.version}</version>
-          <executions>
-            <execution>
-              <id>attach-sources</id>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>${mvn.jar.version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>com.mycila</groupId>
-          <artifactId>license-maven-plugin</artifactId>
-          <version>${mvn.license.version}</version>
-          <configuration>
-            <strictCheck>true</strictCheck>
-            <inlineHeader><![CDATA[
-${organization.slogan}
-
-Copyright © ${project.inceptionYear}, ${project.organization.name}.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.]]>
-            </inlineHeader>
-            <includes>
-              <include>src/main/java/**</include>
-              <include>src/main/scala/**</include>
-              <include>src/test/java/**</include>
-              <include>src/test/scala/**</include>
-            </includes>
-            <excludes>
-              <exclude>src/**/package-info.java</exclude>
-            </excludes>
-            <properties>
-              <email>duantihua@163.com</email>
-            </properties>
-            <mapping>
-              <java>SLASHSTAR_STYLE</java>
-              <scala>SLASHSTAR_STYLE</scala>
-            </mapping>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>${mvn.release.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-provider-gitexe</artifactId>
-              <version>${mvn.scm.gitprovider.version}</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-            <tagNameFormat>@{project.version}</tagNameFormat>
-            <mavenExecutorId>forked-path</mavenExecutorId>
-          </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>${mvn.surefire.version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>${mvn.checkstyle.version}</version>
-        </plugin>
-
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>${mvn.war.version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>${mvn.bundle.version}</version>
-          <configuration>
-            <instructions>
-              <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-              <Bundle-Version>${project.version}</Bundle-Version>
-              <Bundle-Name>${project.artifactId}</Bundle-Name>
-              <Export-Package>!${bundle.namespace}*internal*,${bundle.namespace}.*;version="${project.version}"</Export-Package>
-              <Private-Package>${bundle.namespace}*internal*</Private-Package>
-              <Import-Package>*;resolution:=optional</Import-Package>
-              <_include>-osgi.bnd</_include>
-            </instructions>
-          </configuration>
-          <executions>
-            <execution>
-              <id>bundle-manifest</id>
-              <phase>process-classes</phase>
-              <goals>
-                <goal>manifest</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
     <plugins>
       <!-- central发布插件 -->
       <plugin>
@@ -262,19 +98,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.]]>
           <deploymentName>${project.groupId}:${project.artifactId}:${project.version}</deploymentName>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
+        <version>${mvn.deploy.version}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
+        <version>${mvn.clean.version}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
+        <version>${mvn.install.version}</version>
       </plugin>
 
       <plugin>
@@ -299,11 +139,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.]]>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+        <version>${mvn.source.version}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>${mvn.jar.version}</version>
         <configuration>
           <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
@@ -314,6 +156,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.]]>
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
+        <version>${mvn.license.version}</version>
+        <configuration>
+          <strictCheck>true</strictCheck>
+          <inlineHeader><![CDATA[
+${organization.slogan}
+
+Copyright © ${project.inceptionYear}, ${project.organization.name}.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.]]>
+          </inlineHeader>
+          <includes>
+            <include>src/main/java/**</include>
+            <include>src/main/scala/**</include>
+            <include>src/test/java/**</include>
+            <include>src/test/scala/**</include>
+          </includes>
+          <excludes>
+            <exclude>src/**/package-info.java</exclude>
+          </excludes>
+          <properties>
+            <email>duantihua@163.com</email>
+          </properties>
+          <mapping>
+            <java>SLASHSTAR_STYLE</java>
+            <scala>SLASHSTAR_STYLE</scala>
+          </mapping>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -332,26 +219,76 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.]]>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
+        <version>${mvn.release.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>${mvn.scm.gitprovider.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+          <mavenExecutorId>forked-path</mavenExecutorId>
+        </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${mvn.surefire.version}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${mvn.checkstyle.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${mvn.war.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${mvn.compiler.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <release>${java.version}</release>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+        <version>${mvn.bundle.version}</version>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-Name>${project.artifactId}</Bundle-Name>
+            <Export-Package>!${bundle.namespace}*internal*,${bundle.namespace}.*;version="${project.version}"
+            </Export-Package>
+            <Private-Package>${bundle.namespace}*internal*</Private-Package>
+            <Import-Package>*;resolution:=optional</Import-Package>
+            <_include>-osgi.bnd</_include>
+          </instructions>
+        </configuration>
+        <executions>
+          <execution>
+            <id>bundle-manifest</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
